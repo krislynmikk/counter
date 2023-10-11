@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .countdown-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .countdown {
+            font-size: 2em;
+            color: #333;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>Palgapäevani on jäänud</h1>
+        <p class="countdown" id="countdown"></p>
+    </div>
+
+    <script>
+        // Function to update the countdown
+        function updateCountdown() {
+            const currentDate = new Date();
+            const nextMonth = new Date(currentDate);
+            nextMonth.setMonth(currentDate.getMonth() + 1);
+            nextMonth.setDate(10);
+            nextMonth.setHours(0, 0, 0, 0);
+
+            const timeRemaining = nextMonth - currentDate;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            const countdownElement = document.getElementById("countdown");
+            countdownElement.textContent = `${days} päeva ${hours} tundi ${minutes} minutit ${seconds} sekundit `;
+        }
+
+        // Update the countdown immediately
+        updateCountdown();
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
