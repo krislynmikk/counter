@@ -40,6 +40,10 @@
             nextMonth.setMonth(currentDate.getMonth() + 1);
             nextMonth.setDate(10);
             nextMonth.setHours(0, 0, 0, 0);
+              if (currentDate.getDate() > 10) {
+        nextMonth.setMonth(nextMonth.getMonth() + 1);
+    }
+
 
             const timeRemaining = nextMonth - currentDate;
 
