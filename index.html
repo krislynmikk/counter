@@ -34,32 +34,37 @@
 
     <script>
         // Function to update the countdown
-        function updateCountdown() {
-            const currentDate = new Date();
-            const nextMonth = new Date(currentDate);
-            nextMonth.setMonth(currentDate.getMonth());
-            nextMonth.setDate(10);
-            nextMonth.setHours(0, 0, 0, 0);
-              if (currentDate.getDate() > 10) {
-        nextMonth.setMonth(nextMonth.getMonth());
+function daysUntilNext10th() {
+  const today = new Date();
+  const currentDay = today.getDate();
+  const currentMonth = today.getMonth() + 1; // Month starts from 0
+  const currentYear = today.getFullYear();
+
+  let targetMonth = currentMonth;
+  let targetYear = currentYear;
+
+  // Check if today is after the 10th day of the month
+  if (currentDay > 10) {
+    targetMonth += 1;
+    if (targetMonth > 12) {
+      targetMonth = 1;
+      targetYear += 1;
     }
+  }
 
+  // Set the target date as the 10th of the next (or current) month
+  const targetDate = new Date(targetYear, targetMonth - 1, 10);
 
-            const timeRemaining = nextMonth - currentDate;
+  // Calculate the difference in days
+  const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  const daysLeft = Math.round((targetDate - today) / oneDay);
 
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  return daysLeft;
+}
 
+const daysLeftUntil10th = daysUntilNext10th();
+console.log(`There are ${daysLeftUntil10th} days left until the next 10th of the month.`);
 
-            const countdownElement = document.getElementById("countdown");
-            countdownElement.textContent = `${days} päeva ${hours} tundi ${minutes} `;
-        }
-
-        // Update the countdown immediately
-        updateCountdown();
-
-        // Update the countdown every second
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
