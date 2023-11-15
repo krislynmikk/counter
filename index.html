@@ -49,11 +49,10 @@
 
             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
 
             const countdownElement = document.getElementById("countdown");
-            countdownElement.textContent = `${days} päeva ${hours} tundi ${minutes} minutit ${seconds} sekundit `;
+            countdownElement.textContent = `${days} päeva ${hours} tundi ${minutes} `;
         }
 
         // Update the countdown immediately
